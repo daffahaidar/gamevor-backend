@@ -1,5 +1,7 @@
 <?php
 
+// models user
+
 namespace App\Models;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -21,11 +23,15 @@ class User extends Authenticatable
     /**
      * The attributes that are mass assignable.
      *
-     * @var string[]
+     * @var array
      */
+    // yang akan diisi
     protected $fillable = [
         'name',
         'email',
+        'username',
+        'phone_number',
+        'roles',
         'password',
     ];
 
@@ -58,4 +64,9 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+
+    public function transactions()
+    {
+        return $this->hasMany(Transaction::class, 'user_id', 'id');
+    }
 }
