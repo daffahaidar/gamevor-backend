@@ -34,4 +34,7 @@ Route::middleware('auth:sanctum')->group(function () {
 
     // route transaction controller
     Route::get('transaction', [TransactionController::class, 'all']);
+
+    // route checkout controller
+    Route::post('checkout', [TransactionController::class, 'checkout']);
 });
