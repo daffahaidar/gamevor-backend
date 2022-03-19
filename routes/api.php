@@ -21,3 +21,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 // route product controller
 Route::get('produts', [ProductController::class, 'all']);
+
+// route procuct category controller
+Route::get('categories', [ProductCategoryController::class, 'all']);

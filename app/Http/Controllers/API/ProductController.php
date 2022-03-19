@@ -27,7 +27,7 @@ class ProductController extends Controller
             if ($product) {
                 return ResponseFormatter::success(
                     $product,
-                    'Data Product berhasil didapatkan'
+                    'Data produk berhasil didapatkan'
                 );
             }
 
@@ -43,26 +43,32 @@ class ProductController extends Controller
 
         $product = Product::with(['category'], ['galleries']);
 
-        // filter product
+        // filter nama product
         if ($name) {
             $product->where('name', 'like', '%' . $name . '%');
         }
+        // filter description
         if ($description) {
             $product->where('description', 'like', '%' . $description . '%');
         }
+        // filter tags
         if ($tags) {
             $product->where('tags', 'like', '%' . $tags . '%');
         }
+        // filter harga terendah
         if ($price_from) {
             $product->where('price', '>=', $price_from);
         }
+        // filter harga tertinggi
         if ($price_to) {
             $product->where('price', '<=', $price_to);
         }
+        // filter categories
         if ($categories) {
             $product->where('categories', $categories);
         }
 
+        // ambil data berdasarkan limit
         return ResponseFormatter::success(
             $product->paginate($limit),
             'Data Product berhasil didapatkan'
