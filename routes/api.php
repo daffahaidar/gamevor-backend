@@ -24,3 +24,6 @@ Route::get('produts', [ProductController::class, 'all']);
 
 // route procuct category controller
 Route::get('categories', [ProductCategoryController::class, 'all']);
+
+// route users register
+Route::get('register', [UserController::class, 'register']);
