@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers\API;
 
-use App\Helpers\ResponseFormatter;
-use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
+use App\Helpers\ResponseFormatter;
+use Laravel\Fortify\Rules\Password;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Laravel\Fortify\Rules\Password;
 
 class UserController extends Controller
 {
@@ -84,5 +84,27 @@ class UserController extends Controller
                 'error' => $e,
             ], 'Authentication Failed', 500);
         }
+    }
+
+    public function fetch(Request $request)
+    {
+        // untuk memvalidasi user sedang login atau tidak
+        ResponseFormatter::success($request->user(), 'User Fetched Successfully');
+    }
+
+    public function updateProfile(Request $request)
+    {
+        $data = $request->all();
+        // mengambil user yang sedang login
+        $user = Auth::user();
+        $user->update($data); // method update ini sebenarnya tidak error
+
+        return ResponseFormatter::success($user, 'User Updated Successfully');
+    }
+
+    public function logout(Request $request)
+    {
+        $token = $request->user()->currentAccessToken()->delete();
+        return ResponseFormatter::success($token, 'User Logged Out Successfully');
     }
 }
