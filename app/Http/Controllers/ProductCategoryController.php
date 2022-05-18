@@ -39,7 +39,7 @@ class ProductCategoryController extends Controller
      */
     public function create()
     {
-        //
+        return view('pages.dashboard.category.create');
     }
 
     /**
@@ -50,7 +50,11 @@ class ProductCategoryController extends Controller
      */
     public function store(ProductCategoryRequest $request) //ProductCategoryRequest $request
     {
-        //
+        $data = $request->all();
+
+        ProductCategory::create($data);
+
+        return redirect()->route('dashboard.category.index')->with('success', 'Category has been created');
     }
 
     /**

@@ -3,6 +3,7 @@
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProductCategoryController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,6 +15,10 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
     Route::name('dashboard.')->prefix('dashboard')->group(function () {
