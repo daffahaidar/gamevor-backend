@@ -57,4 +57,84 @@
 | `Accept`        | `application/json` |             |
 | `Authorization` | `Bearer 7/Key`     |             |
 
-More API is Comming Soon..
+#### User Data
+
+```http
+  GET {{API_URL}}/api/user
+```
+
+| Key             | Value              | Example Key                                |
+| :-------------- | :----------------- | :----------------------------------------- |
+| `Accept`        | `application/json` |                                            |
+| `Authorization` | `Bearer 7`         | `3CnhqxxjI8eE9nTssSQUEvi5sEdtTmTqLkNneavz` |
+
+#### Products Data
+
+```http
+  GET {{API_URL}}/api/products
+```
+
+| Key           | Example Value  |
+| :------------ | :------------- |
+| `id`          | 1              |
+| `limit`       | 6              |
+| `name`        | Mobile Legends |
+| `description` | Awesome        |
+| `price_from`  | 1              |
+| `price_to`    | 10000          |
+| `tags`        | popular        |
+| `category`    | 1              |
+
+#### Products Category
+
+```http
+  GET {{API_URL}}/api/categories?show_product={Key}
+```
+
+| Key            | Example Value  |
+| :------------- | :------------- |
+| `id`           | 1              |
+| `limit`        | 6              |
+| `name`         | Mobile Legends |
+| `show_product` | 1              |
+
+#### Transactions
+
+```http
+  GET {{API_URL}}/api/transactions
+```
+
+| Key      | Example Value |
+| :------- | :------------ |
+| `id`     | 1             |
+| `limit`  | 6             |
+| `status` | PENDING       |
+
+#### Checkout Data
+
+```http
+  GET {{API_URL}}/api/checkout
+```
+
+```
+  {
+    "address": "Kota Bandung",
+    "items": [
+        {
+            "id": 1,
+            "quantity": 2
+        },
+        {
+            "id": 2,
+            "quantity": 2
+        },
+        {
+            "id": 3,
+            "quantity": 2
+        }
+    ],
+    "status": "PENDING",
+    "total_price": 6000,
+    "shipping_price": 1000
+}
+```
