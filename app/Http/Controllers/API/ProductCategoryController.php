@@ -2,55 +2,47 @@
 
 namespace App\Http\Controllers\API;
 
-use App\Http\Controllers\Controller;
-use App\Models\ProductCategory;
 use Illuminate\Http\Request;
+use App\Models\ProductCategory;
 use App\Helpers\ResponseFormatter;
+use App\Http\Controllers\Controller;
 
 class ProductCategoryController extends Controller
 {
     public function all(Request $request)
     {
         $id = $request->input('id');
-        $limit = $request->input('limit');
+        $limit = $request->input('limit', 6);
         $name = $request->input('name');
         $show_product = $request->input('show_product');
 
         if ($id) {
             $category = ProductCategory::with(['products'])->find($id);
 
-            //jika datanya berhasil didapatkan
-            if ($category) {
+            if ($category)
                 return ResponseFormatter::success(
                     $category,
-                    'Data kategori berhasil didapatkan'
+                    'Data produk berhasil diambil'
                 );
-            }
-
-            //jika datanya gagal didapatkan
-            else {
+            else
                 return ResponseFormatter::error(
                     null,
-                    'Tidak ditemukan!',
+                    'Data kategori produk tidak ada',
                     404
                 );
-            }
         }
+
         $category = ProductCategory::query();
 
-        // filter nama product
-        if ($name) {
+        if ($name)
             $category->where('name', 'like', '%' . $name . '%');
-        }
 
-        if ($show_product) {
+        if ($show_product)
             $category->with('products');
-        }
 
-        // ambil data berdasarkan limit
         return ResponseFormatter::success(
             $category->paginate($limit),
-            'Data kategori berhasil didapatkan'
+            'Data list kategori produk berhasil diambil'
         );
     }
 }

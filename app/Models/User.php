@@ -1,7 +1,5 @@
 <?php
 
-// models user
-
 namespace App\Models;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -25,7 +23,6 @@ class User extends Authenticatable
      *
      * @var array
      */
-    // yang akan diisi
     protected $fillable = [
         'name',
         'email',
@@ -36,7 +33,7 @@ class User extends Authenticatable
     ];
 
     /**
-     * The attributes that should be hidden for serialization.
+     * The attributes that should be hidden for arrays.
      *
      * @var array
      */
@@ -48,7 +45,7 @@ class User extends Authenticatable
     ];
 
     /**
-     * The attributes that should be cast.
+     * The attributes that should be cast to native types.
      *
      * @var array
      */
@@ -67,6 +64,6 @@ class User extends Authenticatable
 
     public function transactions()
     {
-        return $this->hasMany(Transaction::class, 'user_id', 'id');
+        return $this->hasMany(Transaction::class, 'users_id', 'id');
     }
 }

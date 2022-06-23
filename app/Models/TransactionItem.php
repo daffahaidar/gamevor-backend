@@ -2,24 +2,15 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class TransactionItem extends Model
 {
     use HasFactory;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
-    // yang akan diisi
     protected $fillable = [
-        'users_id',
-        'products_id',
-        'transactions_id',
-        'quantity',
+        'users_id', 'products_id', 'transactions_id', 'quantity'
     ];
 
     public function product()
