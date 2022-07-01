@@ -1,6 +1,6 @@
 <p align="center"><a href="https://github.com/daffahaidar/gamevor-backend/" target="_blank"><img src="https://user-images.githubusercontent.com/56962807/158961910-a434d6ce-1cf8-4944-b20f-3f3859087ea4.png" width="400"></a></p>
 
-## API Reference
+### API Reference
 
 #### Login
 
